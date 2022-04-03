@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:contacts_app/data/contact.dart';
 import 'package:contacts_app/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'dart:developer';
 
 class ContactForm extends StatefulWidget {
   ContactForm({Key? key, this.editedContact, this.editedContactIndex})
@@ -21,7 +25,10 @@ class _ContactFormState extends State<ContactForm> {
   late String _email;
   late String _phoneNumber;
 
+  File? _contactImageFile;
+
   bool get isEditMode => widget.editedContact != null;
+  bool get imageSelected => _contactImageFile != null;
 
   @override
   Widget build(BuildContext context) {
@@ -110,18 +117,35 @@ class _ContactFormState extends State<ContactForm> {
 
   Widget _buildContactPicture() {
     final halfScreenDiameter = MediaQuery.of(context).size.width / 4;
-    return CircleAvatar(
-      radius: halfScreenDiameter,
-      child: isEditMode
-          ? Text(
-              widget.editedContact?.name[0] ?? '',
-              style: TextStyle(fontSize: halfScreenDiameter),
-            )
-          : Icon(
-              Icons.person,
-              size: halfScreenDiameter,
-            ),
+    return Hero(
+      // tag zero or empty string or whatever, doesn't matter.
+      // animation wont happen if there's no matching tag
+      tag: widget.editedContact?.hashCode ?? 0,
+      child: GestureDetector(
+        onTap: _onContactPictureTapped,
+        child: CircleAvatar(
+          radius: halfScreenDiameter,
+          child: imageSelected
+              ? ClipOval(
+                  child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Image.file(_contactImageFile!, fit: BoxFit.cover)))
+              : isEditMode
+                  ? Text(widget.editedContact?.name[0] ?? '',
+                      style: TextStyle(fontSize: halfScreenDiameter))
+                  : Icon(Icons.person, size: halfScreenDiameter),
+        ),
+      ),
     );
+  }
+
+  void _onContactPictureTapped() async {
+    final xfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final File? imageFile = xfile != null ? File(xfile.path) : null;
+    setState(() {
+      _contactImageFile = imageFile;
+    });
+    log('image path ---------> ${imageFile?.path}');
   }
 
   String? _validateName(String? value) {

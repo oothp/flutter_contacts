@@ -54,7 +54,7 @@ class ContactTile extends StatelessWidget {
               ),
           title: Text(displayedContact.name),
           subtitle: Text(displayedContact.email),
-          leading: CircleAvatar(child: Text(displayedContact.name[0])),
+          leading: _buildCircleAvatar(displayedContact),
           trailing: IconButton(
               onPressed: () => model.changeFavouriteStatus(contactIndex),
               icon: Icon(
@@ -65,15 +65,9 @@ class ContactTile extends StatelessWidget {
     );
   }
 
-  // void _showToast(BuildContext context, String msgText) {
-  //   final txt = msgText;
-  //   var scaffold = ScaffoldMessenger.of(context);
-  //   scaffold.showSnackBar(
-  //     SnackBar(
-  //       content: Text(txt),
-  //       action: SnackBarAction(
-  //           label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-  //     ),
-  //   );
-  // }
+  Hero _buildCircleAvatar(Contact contact) {
+    return Hero(
+        tag: contact.hashCode,
+        child: CircleAvatar(child: Text(contact.name[0])));
+  }
 }
