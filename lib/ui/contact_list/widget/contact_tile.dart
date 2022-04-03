@@ -22,49 +22,12 @@ class ContactTile extends StatelessWidget {
 
     return Slidable(
       key: const Key('somekeyidunno'),
-      // startActionPane: ActionPane(
-      //   // A motion is a widget used to control how the pane animates.
-      //   motion: const ScrollMotion(),
-      //
-      //   // A pane can dismiss the Slidable.
-      //   dismissible: DismissiblePane(
-      //     onDismissed: () => _showToast(context, "on dismissed"),
-      //     closeOnCancel: true,
-      //   ),
-      //
-      //   // All actions are defined in the children parameter.
-      //   children: [
-      //     // A SlidableAction can have an icon and/or a label.
-      //     SlidableAction(
-      //       onPressed: (context) => _showToast(context, 'action1'),
-      //       backgroundColor: const Color(0xFFFE4A49),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.delete,
-      //       label: 'Delete',
-      //     ),
-      //     SlidableAction(
-      //       onPressed: (context) => _showToast(context, 'action2'),
-      //       backgroundColor: const Color(0xFF21B7CA),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.share,
-      //       label: 'Share',
-      //     ),
-      //   ],
-      // ),
 
       // The end action pane is the one at the right or the bottom side.
       endActionPane: ActionPane(
         dragDismissible: true,
         motion: const ScrollMotion(),
         children: [
-          // SlidableAction(
-          //   // An action can be bigger than the others.
-          //   onPressed: (context) => _showToast(context, 'action4'),
-          //   backgroundColor: const Color(0xFF0392CF),
-          //   foregroundColor: Colors.white,
-          //   icon: Icons.save,
-          //   label: 'Save',
-          // ),
           SlidableAction(
             onPressed: (context) => model.removeContact(contactIndex),
             backgroundColor: const Color(0xFFF56262),
@@ -92,6 +55,7 @@ class ContactTile extends StatelessWidget {
               ),
           title: Text(displayedContact.name),
           subtitle: Text(displayedContact.email),
+          leading: CircleAvatar(child: Text(displayedContact.name[0]),),
           trailing: IconButton(
               onPressed: () => model.changeFavouriteStatus(contactIndex),
               icon: Icon(
