@@ -65,15 +65,15 @@ class ContactTile extends StatelessWidget {
     );
   }
 
-  void _showToast(BuildContext context, String msgText) {
-    final txt = msgText;
-    var scaffold = ScaffoldMessenger.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: Text(txt),
-        action: SnackBarAction(
-            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-      ),
-    );
-  }
+  // void _showToast(BuildContext context, String msgText) {
+  //   final txt = msgText;
+  //   var scaffold = ScaffoldMessenger.of(context);
+  //   scaffold.showSnackBar(
+  //     SnackBar(
+  //       content: Text(txt),
+  //       action: SnackBarAction(
+  //           label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+  //     ),
+  //   );
+  // }
 }
