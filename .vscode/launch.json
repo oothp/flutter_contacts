@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "contacts_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "contacts_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "contacts_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+
+        {
+            "name": "iPhone 13 Simulator",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "A5BB83EC-A3DE-4C36-A9BC-7BFF9C10470B"
+        },
+        {
+            "name": "Android 30 Emulator",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "MacOs",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "macos"
+        }
+
+    ]
+}
