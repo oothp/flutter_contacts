@@ -2,7 +2,6 @@ import 'package:contacts_app/data/contact.dart';
 import 'package:contacts_app/ui/contact/contact_edit.dart';
 import 'package:contacts_app/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -55,7 +54,7 @@ class ContactTile extends StatelessWidget {
               ),
           title: Text(displayedContact.name),
           subtitle: Text(displayedContact.email),
-          leading: CircleAvatar(child: Text(displayedContact.name[0]),),
+          leading: CircleAvatar(child: Text(displayedContact.name[0])),
           trailing: IconButton(
               onPressed: () => model.changeFavouriteStatus(contactIndex),
               icon: Icon(

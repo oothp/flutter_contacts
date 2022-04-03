@@ -69,7 +69,6 @@ class _ContactFormState extends State<ContactForm> {
               ),
             ),
             const SizedBox(height: 12.0),
-
             ElevatedButton(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -109,11 +108,20 @@ class _ContactFormState extends State<ContactForm> {
     }
   }
 
-  Widget _buildContactPicture()  {
+  Widget _buildContactPicture() {
     final halfScreenDiameter = MediaQuery.of(context).size.width / 4;
-    return isEditMode ? CircleAvatar(child: Text(widget.editedContact?.name[0] ?? '',
-                style: TextStyle(fontSize: halfScreenDiameter)), radius: halfScreenDiameter)
-        : const SizedBox(height: 1.0);
+    return CircleAvatar(
+      radius: halfScreenDiameter,
+      child: isEditMode
+          ? Text(
+              widget.editedContact?.name[0] ?? '',
+              style: TextStyle(fontSize: halfScreenDiameter),
+            )
+          : Icon(
+              Icons.person,
+              size: halfScreenDiameter,
+            ),
+    );
   }
 
   String? _validateName(String? value) {
