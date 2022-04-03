@@ -31,6 +31,8 @@ class _ContactFormState extends State<ContactForm> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
+            _buildContactPicture(),
+            const SizedBox(height: 18.0),
             TextFormField(
               onSaved: (newValue) => _name = newValue ??= '',
               validator: _validateName,
@@ -42,7 +44,6 @@ class _ContactFormState extends State<ContactForm> {
                 ),
               ),
             ),
-            // return log('form value: $newValue');
             const SizedBox(height: 12.0),
             TextFormField(
               onSaved: (newValue) => _email = newValue ??= '-',
@@ -106,6 +107,13 @@ class _ContactFormState extends State<ContactForm> {
       //pop stack
       Navigator.of(context).pop();
     }
+  }
+
+  Widget _buildContactPicture()  {
+    final halfScreenDiameter = MediaQuery.of(context).size.width / 4;
+    return isEditMode ? CircleAvatar(child: Text(widget.editedContact?.name[0] ?? '',
+                style: TextStyle(fontSize: halfScreenDiameter)), radius: halfScreenDiameter)
+        : const SizedBox(height: 1.0);
   }
 
   String? _validateName(String? value) {
