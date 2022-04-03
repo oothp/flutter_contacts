@@ -31,6 +31,12 @@ class _ContactFormState extends State<ContactForm> {
   bool get imageSelected => _contactImageFile != null;
 
   @override
+  void initState() {
+    super.initState();
+    _contactImageFile = widget.editedContact?.imageFile;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
@@ -103,6 +109,7 @@ class _ContactFormState extends State<ContactForm> {
         email: _email,
         phoneNumber: _phoneNumber,
         isFavorite: widget.editedContact?.isFavorite ?? false,
+        imageFile: _contactImageFile,
       );
       if (isEditMode) {
         ScopedModel.of<ContactsModel>(context)
@@ -116,6 +123,8 @@ class _ContactFormState extends State<ContactForm> {
   }
 
   Widget _buildContactPicture() {
+    log('image file: $_contactImageFile');
+
     final halfScreenDiameter = MediaQuery.of(context).size.width / 4;
     return Hero(
       // tag zero or empty string or whatever, doesn't matter.
@@ -145,7 +154,7 @@ class _ContactFormState extends State<ContactForm> {
     setState(() {
       _contactImageFile = imageFile;
     });
-    log('image path ---------> ${imageFile?.path}');
+    // log('image path ---------> ${imageFile?.path}');
   }
 
   String? _validateName(String? value) {

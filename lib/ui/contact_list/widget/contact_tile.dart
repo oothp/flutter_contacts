@@ -65,9 +65,15 @@ class ContactTile extends StatelessWidget {
     );
   }
 
-  Hero _buildCircleAvatar(Contact contact) {
-    return Hero(
+  Hero _buildCircleAvatar(Contact contact) => Hero(
         tag: contact.hashCode,
-        child: CircleAvatar(child: Text(contact.name[0])));
-  }
+        child: CircleAvatar(
+          child: contact.imageFile != null
+              ? ClipOval(
+                  child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Image.file(contact.imageFile!, fit: BoxFit.cover)))
+              : Text(contact.name[0]),
+        ),
+      );
 }
