@@ -35,6 +35,8 @@ dependencies:
   scoped_model: ^2.0.0-nullsafety.0
   flutter_slidable: ^1.2.0
   image_picker: ^0.8.4+11
+  sembast: ^3.2.0
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:
