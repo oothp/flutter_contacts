@@ -41,8 +41,10 @@ class ContactsModel extends Model {
     notifyListeners();
   }
 
-  void changeFavoriteStatus(int index) {
-    _contacts[index].isFavorite = !_contacts[index].isFavorite;
+  Future changeFavoriteStatus(Contact contact) async {
+    contact.isFavorite = !contact.isFavorite;
+    await _contactDao.update(contact);
+    _contacts = await _contactDao.getAllInSortedOrder();
     notifyListeners();
   }
 }

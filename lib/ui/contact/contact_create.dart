@@ -9,6 +9,6 @@ class ContactCreate extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Create'),
         ),
-        body: ContactForm(),
+        body: const ContactForm(),
       );
 }

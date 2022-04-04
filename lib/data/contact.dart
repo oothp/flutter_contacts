@@ -22,17 +22,18 @@ class Contact {
       'name': name,
       'email': email,
       'phoneNumber': phoneNumber,
-      'isFavorite': isFavorite,
+      'isFavorite': isFavorite ? 1 : 0,
       'imageFilePath': imageFile?.path
     };
-  }
+  } // 1/0 allows us to sort based on isFavorite. Booleans are not comparable, integers OK.
 
   static Contact fromMap(Map<String, dynamic> map) {
     return Contact(
         name: map['name'],
         email: map['email'],
         phoneNumber: map['phoneNumber'],
-        isFavorite: map['isFavorite'],
-        imageFile: map['imageFilePath'] != null ? File(map['imageFilePath']) : null);
+        isFavorite: map['isFavorite'] == 1 ? true : false,
+        imageFile:
+            map['imageFilePath'] != null ? File(map['imageFilePath']) : null);
   }
 }

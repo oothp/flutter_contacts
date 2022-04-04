@@ -54,7 +54,7 @@ class ContactTile extends StatelessWidget {
           subtitle: Text(displayedContact.email),
           leading: _buildCircleAvatar(displayedContact),
           trailing: IconButton(
-              onPressed: () => model.changeFavoriteStatus(contactIndex),
+              onPressed: () => model.changeFavoriteStatus(displayedContact),
               icon: Icon(
                   displayedContact.isFavorite ? Icons.star : Icons.star_border,
                   color: displayedContact.isFavorite
