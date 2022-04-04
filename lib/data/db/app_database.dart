@@ -10,6 +10,8 @@ class AppDatabase {
   // is stored in this private field.
   static final AppDatabase _singleton = AppDatabase._();
 
+  // this instance get only property is the only way for other classes to access
+  // the sinlge AppDatabase object.
   static AppDatabase get instance => _singleton;
 
   Completer<Database>? _dbOpenCompleter;

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:contacts_app/data/contact.dart';
-import 'package:contacts_app/data/db/app_database.dart';
 import 'package:contacts_app/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,11 +8,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'dart:developer';
 
 class ContactForm extends StatefulWidget {
-  ContactForm({Key? key, this.editedContact, this.editedContactIndex})
-      : super(key: key);
+  const ContactForm({Key? key, this.editedContact}) : super(key: key);
 
-  Contact? editedContact;
-  int? editedContactIndex;
+  final Contact? editedContact;
 
   @override
   _ContactFormState createState() => _ContactFormState();
@@ -114,8 +111,10 @@ class _ContactFormState extends State<ContactForm> {
         imageFile: _contactImageFile,
       );
       if (isEditMode) {
+        newOrEditedContact.id =
+            widget.editedContact!.id; // editectContact not null = editMode
         ScopedModel.of<ContactsModel>(context)
-            .updateContact(newOrEditedContact, widget.editedContactIndex);
+            .updateContact(newOrEditedContact);
       } else {
         ScopedModel.of<ContactsModel>(context).addContact(newOrEditedContact);
       }

@@ -10,10 +10,13 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+  // .. cascading operator. Whats after .. is called on this ContactsModel instance
   @override
   Widget build(BuildContext context) {
+    // Scoped model wiget will make sure that we can access the contactsmodel
+    // anywhere down the widget tree. This is possible because of Flutters InheritedWidget.
     return ScopedModel(
-      model: ContactsModel(),
+      model: ContactsModel()..loadContacts(),
       child: MaterialApp(
           title: 'Contacts',
           theme: ThemeData(primarySwatch: Colors.teal),

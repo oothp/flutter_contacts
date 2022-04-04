@@ -28,7 +28,7 @@ class ContactTile extends StatelessWidget {
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) => model.removeContact(contactIndex),
+            onPressed: (context) => model.removeContact(displayedContact),
             backgroundColor: const Color(0xFFF56262),
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -47,16 +47,14 @@ class ContactTile extends StatelessWidget {
       child: ListTile(
           onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => ContactEdit(
-                      editedContact: displayedContact,
-                      editedContactIndex: contactIndex),
+                  builder: (_) => ContactEdit(editedContact: displayedContact),
                 ),
               ),
           title: Text(displayedContact.name),
           subtitle: Text(displayedContact.email),
           leading: _buildCircleAvatar(displayedContact),
           trailing: IconButton(
-              onPressed: () => model.changeFavouriteStatus(contactIndex),
+              onPressed: () => model.changeFavoriteStatus(contactIndex),
               icon: Icon(
                   displayedContact.isFavorite ? Icons.star : Icons.star_border,
                   color: displayedContact.isFavorite

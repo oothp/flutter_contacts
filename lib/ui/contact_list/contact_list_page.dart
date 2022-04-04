@@ -27,12 +27,13 @@ class _ContactListPageState extends State<ContactListPage> {
         title: const Text('Contacts'),
       ),
       body: ScopedModelDescendant<ContactsModel>(
-        // runs when notifyListeners() is called from the model.
-        builder: (context, child, model) => ListView.builder(
-          itemCount: model.contacts.length,
-          itemBuilder: (context, index) => ContactTile(contactIndex: index),
-        ),
-      ),
+          // runs when notifyListeners() is called from the model.
+          builder: (context, child, model) => model.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: model.contacts.length,
+                  itemBuilder: (context, index) =>
+                      ContactTile(contactIndex: index))),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.person_add),
         onPressed: () {

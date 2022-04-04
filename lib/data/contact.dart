@@ -1,6 +1,7 @@
 import 'dart:io';
 
 class Contact {
+  late int id; // key for db
   String name;
   String email;
   String phoneNumber;
@@ -21,7 +22,7 @@ class Contact {
       'name': name,
       'email': email,
       'phoneNumber': phoneNumber,
-      'isFavourite': isFavorite,
+      'isFavorite': isFavorite,
       'imageFilePath': imageFile?.path
     };
   }
@@ -31,8 +32,7 @@ class Contact {
         name: map['name'],
         email: map['email'],
         phoneNumber: map['phoneNumber'],
-        isFavorite: map['isFavourite'],
-        // imageFile: File(map['imageFilePath'] ??= null));
-        imageFile: File(map['imageFilePath']));
+        isFavorite: map['isFavorite'],
+        imageFile: map['imageFilePath'] != null ? File(map['imageFilePath']) : null);
   }
 }
