@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:contacts_app/data/contact.dart';
 import 'package:contacts_app/ui/contact/contact_edit.dart';
 import 'package:contacts_app/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class ContactTile extends StatelessWidget {
   const ContactTile({Key? key, required this.contactIndex}) : super(key: key);
@@ -22,6 +25,29 @@ class ContactTile extends StatelessWidget {
     return Slidable(
       key: const Key('somekeyidunno'),
 
+      // start action pane (left hs).
+      startActionPane: ActionPane(
+        dragDismissible: false,
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) =>
+                _callPhoneNumber(context, displayedContact.phoneNumber),
+            backgroundColor: const Color.fromARGB(255, 245, 157, 98),
+            foregroundColor: Colors.white,
+            icon: Icons.call,
+            label: 'Call',
+          ),
+          SlidableAction(
+            onPressed: (context) => _sendEmail(context, displayedContact.email),
+            backgroundColor: const Color.fromARGB(255, 98, 176, 245),
+            foregroundColor: Colors.white,
+            icon: Icons.email,
+            label: 'Email',
+          ),
+        ],
+      ),
+
       // The end action pane is the one at the right or the bottom side.
       endActionPane: ActionPane(
         dragDismissible: true,
@@ -38,6 +64,28 @@ class ContactTile extends StatelessWidget {
       ),
       child: _buildContent(context, displayedContact, model),
     );
+  }
+
+  Future _callPhoneNumber(BuildContext context, String number) async {
+    final url = 'tel:$number';
+    log(url);
+    if (await url_launcher.canLaunch((url))) {
+      await url_launcher.launch(url);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Cannot make this call')));
+    }
+  }
+
+  Future _sendEmail(BuildContext context, String email) async {
+    final url = 'mailto:$email';
+    log(url);
+    if (await url_launcher.canLaunch((url))) {
+      await url_launcher.launch(url);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Unable to send email')));
+    }
   }
 
   Container _buildContent(

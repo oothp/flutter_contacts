@@ -10,12 +10,12 @@
             "request": "launch",
             "type": "dart"
         },
-        // {
-        //     "name": "contacts_app (profile mode)",
-        //     "request": "launch",
-        //     "type": "dart",
-        //     "flutterMode": "profile"
-        // },
+        {
+            "name": "contacts_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
         // {
         //     "name": "contacts_app (release mode)",
         //     "request": "launch",

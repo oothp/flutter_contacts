@@ -22,8 +22,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs to access camera for taking contact pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app needs to access the photo library to be able to perform this action.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,9 +49,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>The app needs to access the photo library to be able to perform this action.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>This app needs to access camera for taking contact pictures</string>
 </dict>
 </plist>

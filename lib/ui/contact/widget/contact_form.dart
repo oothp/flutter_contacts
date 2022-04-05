@@ -38,62 +38,60 @@ class _ContactFormState extends State<ContactForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: <Widget>[
-            _buildContactPicture(),
-            const SizedBox(height: 18.0),
-            TextFormField(
-              onSaved: (newValue) => _name = newValue ??= '',
-              validator: _validateName,
-              initialValue: widget.editedContact?.name,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+      child: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: <Widget>[
+          _buildContactPicture(),
+          const SizedBox(height: 18.0),
+          TextFormField(
+            onSaved: (newValue) => _name = newValue ??= '',
+            validator: _validateName,
+            initialValue: widget.editedContact?.name,
+            decoration: InputDecoration(
+              labelText: 'Name',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
               ),
             ),
-            const SizedBox(height: 12.0),
-            TextFormField(
-              onSaved: (newValue) => _email = newValue ??= '-',
-              validator: _validateEmail,
-              initialValue: widget.editedContact?.email,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+          ),
+          const SizedBox(height: 12.0),
+          TextFormField(
+            onSaved: (newValue) => _email = newValue ??= '-',
+            validator: _validateEmail,
+            initialValue: widget.editedContact?.email,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
               ),
             ),
-            const SizedBox(height: 12.0),
-            TextFormField(
-              onSaved: (newValue) => _phoneNumber = newValue ??= '-',
-              validator: _validatePhoneNumber,
-              initialValue: widget.editedContact?.phoneNumber,
-              decoration: InputDecoration(
-                labelText: 'Phone Number',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+          ),
+          const SizedBox(height: 12.0),
+          TextFormField(
+            onSaved: (newValue) => _phoneNumber = newValue ??= '-',
+            validator: _validatePhoneNumber,
+            initialValue: widget.editedContact?.phoneNumber,
+            decoration: InputDecoration(
+              labelText: 'Phone Number',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
               ),
             ),
-            const SizedBox(height: 12.0),
-            ElevatedButton(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text('SAVE CONTACT'),
-                    Icon(Icons.person, size: 18.0)
-                  ]),
-              onPressed: () {
-                // accessing form thru form key
-                _onSaveContactButtonPressed();
-              },
-            )
-          ],
-        ),
+          ),
+          const SizedBox(height: 12.0),
+          ElevatedButton(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text('SAVE CONTACT'),
+                  Icon(Icons.person, size: 18.0)
+                ]),
+            onPressed: () {
+              // accessing form thru form key
+              _onSaveContactButtonPressed();
+            },
+          )
+        ],
       ),
     );
   }
